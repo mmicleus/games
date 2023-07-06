@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Game, ParentPlatform } from 'src/app/models';
 
 @Component({
   selector: 'app-game',
@@ -17,7 +18,7 @@ export class GameComponent {
     linux: false,
   };
 
-  @Input() gameData!: any;
+  @Input() gameData!: Game;
 
   constructor(private router: Router) {}
 
@@ -33,7 +34,7 @@ export class GameComponent {
 
   activatePlatformIcons() {
     let platform_names = this.gameData.parent_platforms.map(
-      (p: any) => p.platform.name
+      (p: ParentPlatform) => p.platform.name
     );
 
     platform_names.forEach((name: any) => {

@@ -19,6 +19,9 @@ export class HeaderComponent {
   }
 
   onSearch() {
-    this.dataService.changeGamesData(this.searchForm.get('title')?.value);
+    this.dataService.filterData(
+      'metacrit',
+      this.searchForm.get('title')?.value
+    );
   }
 }

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { ApiResponse, Game, Publisher } from '../models';
+import { Observable } from 'rxjs';
+import { environment as env } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,36 +12,35 @@ export class NetworkService {
 
   ngOnInit() {}
 
-  fetchData() {
-    return this.http.get<any>(
-      'https://rawg-video-games-database.p.rapidapi.com/games',
-      {
-        headers: new HttpHeaders({
-          'X-RapidAPI-Key':
-            '37256c6cb7msh9b684b1ec1f3258p178571jsnc1f57c4545a6',
-          'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com',
-        }),
-        params: new HttpParams().set('key', '1238c3c8003e4de5a51e09bd25e213c3'),
-      }
-    );
+  fetchData(
+    sortingCriteria: string,
+    search?: string
+  ): Observable<ApiResponse<Game>> {
+    let params!: HttpParams;
+    if (!search) {
+      params = new HttpParams().set('ordering', sortingCriteria);
+    } else {
+      params = new HttpParams()
+        .set('ordering', sortingCriteria)
+        .set('search', search);
+    }
+
+    return this.http.get<ApiResponse<Game>>(`${env.BASE_URL}/games`, {
+      params: params,
+    });
   }
 
-  getPlatformData(id: number) {
-    let httpParams = new HttpParams();
-
-    httpParams = httpParams.append('key', '1238c3c8003e4de5a51e09bd25e213c3');
+  getPlatformData(id: number): Observable<{
+    description_raw: string;
+    publishers: Publisher[];
+    website: string;
+  }> {
     // httpParams.append('id', '1');
 
-    return this.http.get<any>(
-      `https://rawg-video-games-database.p.rapidapi.com/games/${id}`,
-      {
-        headers: new HttpHeaders({
-          'X-RapidAPI-Key':
-            '37256c6cb7msh9b684b1ec1f3258p178571jsnc1f57c4545a6',
-          'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com',
-        }),
-        params: httpParams,
-      }
-    );
+    return this.http.get<{
+      description_raw: string;
+      publishers: Publisher[];
+      website: string;
+    }>(`${env.BASE_URL}/games/${id}`);
   }
 }

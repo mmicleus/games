@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NetworkService } from '../services/network.service';
 import { DataService } from '../services/data.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Game } from '../models';
 
 @Component({
   selector: 'app-main',
@@ -9,16 +10,20 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  gamesRawData?: any[];
-  gamesData!: any[];
+  gamesRawData?: Game[];
+  gamesData!: Game[];
   sortingForm!: FormGroup;
 
   // filteredData!: any[];
 
-  constructor(private dataService: DataService, private fb: FormBuilder) {}
+  constructor(
+    private dataService: DataService,
+    private networkService: NetworkService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
-    this.dataService.dataChanged.subscribe((data) => {
+    this.dataService.dataChanged.subscribe((data: Array<Game>) => {
       this.gamesData = data;
     });
 
@@ -28,6 +33,7 @@ export class MainComponent {
 
     this.sortingForm.valueChanges.subscribe((data) => {
       this.dataService.filterData(data.sortingCriteria);
+      // this.dataService.filterData(data.sortingCriteria);
     });
   }
 }
