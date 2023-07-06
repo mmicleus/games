@@ -1,0 +1,22 @@
+.hero {
+  height: 70vh;
+  background-size: cover;
+  background-position: 50% 14%;
+  filter: blur(8px);
+  -webkit-filter: blur(2px);
+  position: relative;
+}
+
+.content {
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translateX(-50%);
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 4rem;
+}

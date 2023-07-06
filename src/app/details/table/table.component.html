@@ -1,0 +1,81 @@
+<div class="cont">
+  <div class="hd">
+    <ul>
+      <li [ngClass]="{ selected: currentPage == 0 }" (click)="pageSelected(0)">
+        About
+      </li>
+      <li [ngClass]="{ selected: currentPage == 1 }" (click)="pageSelected(1)">
+        Screenshots
+      </li>
+      <li [ngClass]="{ selected: currentPage == 2 }" (click)="pageSelected(2)">
+        Trailers
+      </li>
+    </ul>
+  </div>
+  <div class="main-section">
+    <!-- ----------------------------------- About ------------------------------------------------- -->
+    <div *ngIf="currentPage == 0">
+      <p>
+        Platforms:
+        <span *ngFor="let platform of gameData.parent_platforms; let i = index"
+          >{{ platform.platform.name }}
+          <span *ngIf="!(i == gameData.parent_platforms.length - 1)"
+            >,</span
+          ></span
+        >
+      </p>
+      <p>
+        Publishers:
+        <span *ngFor="let pub of gameData.publishers; let i = index"
+          >{{ pub.name }}
+          <span *ngIf="!(i == gameData.publishers.length - 1)">,</span></span
+        >
+      </p>
+
+      <p>
+        Website: <a [href]="gameData.website">{{ gameData.website }}</a>
+      </p>
+
+      <p>{{ gameData.description_raw }}</p>
+
+      <span
+        ><i class="fa-solid fa-thumbs-up like"></i>
+        {{ utility.getNrOfThumbsUp(gameData.ratings) }}
+      </span>
+      &nbsp;
+      <span>
+        <i class="fa-solid fa-thumbs-down dislike"></i>
+        {{ utility.getNrOfThumbsDown(gameData.ratings) }}
+      </span>
+    </div>
+
+    <!-- ----------------------------------- Screenshots ------------------------------------------------- -->
+
+    <div *ngIf="currentPage == 1">
+      <div class="container-fluid">
+        <div class="row">
+          <div
+            class="col-12 col-sm-6 mt-2"
+            *ngFor="let shot of gameData.short_screenshots"
+          >
+            <img [src]="shot.image" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ----------------------------------- Trailers ------------------------------------------------- -->
+
+    <div *ngIf="currentPage == 2">
+      <div class="iframe-container">
+        <iframe
+          src="https://www.youtube.com/embed/hvoD7ehZPcM"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>

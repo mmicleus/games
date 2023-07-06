@@ -1,0 +1,36 @@
+$shadow-clr: rgba(124, 129, 45, 0.09);
+
+.card {
+  color: #fff;
+  background-color: #333;
+
+  box-shadow: $shadow-clr 0px 2px 1px, $shadow-clr 0px 4px 2px,
+    $shadow-clr 0px 8px 4px, $shadow-clr 0px 16px 8px, $shadow-clr 0px 32px 16px;
+
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  $shadow-clr: rgba(124, 129, 45, 0.15);
+  box-shadow: $shadow-clr 0px 2px 1px, $shadow-clr 0px 4px 2px,
+    $shadow-clr 0px 8px 4px, $shadow-clr 0px 16px 8px, $shadow-clr 0px 32px 16px;
+}
+
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-img-top {
+  height: 255px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+i {
+  margin-right: 0.6rem;
+}

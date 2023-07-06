@@ -1,0 +1,32 @@
+.cell {
+  background-color: transparent;
+}
+
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+label {
+  color: #fff;
+}
+
+select {
+  background-color: rgb(60, 50, 192);
+  width: 14rem;
+  padding: 0.2rem;
+  color: #fff;
+}
+
+select:focus {
+  outline: none;
+}
+
+option {
+  background-color: #fff;
+  color: #000;
+}
+
+// .card {
+//   margin-top: 1rem;
+// }

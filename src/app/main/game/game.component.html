@@ -1,0 +1,14 @@
+<div class="card mt-3" style="width: 100%" (click)="onCardClick()">
+  <img [src]="gameData.background_image" class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title mt-5 mb-3">{{ gameData.name }}</h5>
+    <div class="icons">
+      <i *ngIf="platforms.windows" class="fa-brands fa-windows"></i>
+      <i *ngIf="platforms.playstation" class="fa-brands fa-playstation"></i>
+      <i *ngIf="platforms.xbox" class="fa-brands fa-xbox"></i>
+      <i *ngIf="platforms.apple" class="fa-brands fa-apple"></i>
+      <i *ngIf="platforms.android" class="fa-brands fa-android"></i>
+      <i *ngIf="platforms.linux" class="fa-brands fa-linux"></i>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="sorting ms-4 mb-4">
+  <form [formGroup]="sortingForm">
+    <label>Sort</label>
+    <br />
+    <select default="Name" formControlName="sortingCriteria">
+      <option value=""></option>
+      <option value="Name">Name</option>
+      <option value="Released">Released</option>
+      <option value="Added">Added</option>
+      <option value="Updated">Updated</option>
+      <option value="Rating">Rating</option>
+    </select>
+  </form>
+</div>
+
+<div class="container-fluid">
+  <div class="row gx-3">
+    <div
+      class="col-12 col-sm-6 col-md-4 col-lg-3 cell"
+      *ngFor="let game of gamesData"
+    >
+      <app-game [gameData]="game"> </app-game>
+    </div>
+  </div>
+</div>
